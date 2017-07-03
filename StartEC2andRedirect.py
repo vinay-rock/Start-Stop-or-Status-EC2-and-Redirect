@@ -144,11 +144,12 @@ def lambda_handler(event, context):
     # httpMethod = event['httpMethod']
     queryStringParameters = event['queryStringParameters'] 
     operation = event['httpMethod']
+    path = event['path']
     # operation = event['input']['httpMethod']
 
 
-    if operation == 'PUT':
-        print("Received PUT event")
+    if operation == 'POST' and path == '/start':
+        print("Received POST event")
         command_result = server_action("start_server")
         return respond(None,"Thank you")
 
